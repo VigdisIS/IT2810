@@ -1,129 +1,169 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
   <body>
-    <canvas
-      id="cowboy"
-      width="400"
-      height="800"
-      style="border: 1px solid black; background-color: #c2d5d9
-      ;"
-    ></canvas>
-    <script>
-      var c = document.getElementById("cowboy");
-      var ctx = c.getContext("2d");
+    <div id="about-container">
+      <h1>Ben Dover</h1>
+      <p>
+        An adult frog has a stout body, protruding eyes, anteriorly-attached
+        tongue, limbs folded underneath, and no tail (the tail of tailed frogs
+        is an extension of the male cloaca). Frogs have glandular skin, with
+        secretions ranging from distasteful to toxic. Their skin varies in
+        colour from well-camouflaged dappled brown, grey and green to vivid
+        patterns of bright red or yellow and black to show toxicity and ward off
+        predators. Adult frogs live in fresh water and on dry land; some species
+        are adapted for living underground or in trees.
+      </p>
+      <p style="text-align: center">
+        The frog is hungry but the flies are flying too fast :( click on the
+        flies to stop them flying for a few seconds.
+      </p>
+    </div>
+    <div id="pictures-container">
+      <div id="pictures">
+        <div id="canvas-container">
+          <canvas
+            id="frog-canvas"
+            width="400"
+            height="650"
+            style="border: 1px solid black; background-color: #c2d5d9"
+          ></canvas>
+          <h3>Canvas</h3>
+        </div>
 
-      // Kropp
-      ctx.beginPath();
-      ctx.arc(200, 450, 170, 1.25 * Math.PI, 1 * Math.PI, true);
-      ctx.lineTo(30, 650);
-      ctx.lineTo(370, 450)
-      ctx.strokeStyle = "#1a8058";
-      ctx.fillStyle = "#1a8058";
-      ctx.stroke();
-      ctx.fill();
+        <div id="svg-container">
+          <div id="svgs">
+            <svg width="89" height="96" id="fly" onclick="flyClicked()">
+              <ellipse cx="43.5" cy="66" rx="43.5" ry="30" fill="#242424" />
+              <circle cx="22" cy="61" r="6" fill="#F4F4F4" />
+              <circle cx="20" cy="61" r="2" fill="#242424" />
+              <ellipse
+                cx="58"
+                cy="32"
+                rx="15"
+                ry="29"
+                transform="rotate(37 58 32)"
+                stroke="#242424"
+                stroke-width="1"
+                fill="none"
+              />
+              <ellipse
+                cx="33"
+                cy="35"
+                rx="15"
+                ry="29"
+                transform="rotate(-54 33 35)"
+                stroke="#242424"
+                stroke-width="1"
+                fill="none"
+              />
+            </svg>
 
-      ctx.beginPath();
-      ctx.arc(200, 450, 170, 1.75 * Math.PI, 2 * Math.PI);
-      ctx.lineTo(370, 650);
-      ctx.lineTo(30, 650);
-      ctx.strokeStyle = "#1a8058";
-      ctx.fillStyle = "#1a8058";
-      ctx.stroke();
-      ctx.fill();
+            <svg width="316" height="441">
+              <ellipse cx="158" cy="252" rx="158" ry="189" fill="#177F5B" />
+              <ellipse cx="158" cy="219" rx="110" ry="82" fill="#089867" />
+              <ellipse
+                cx="157"
+                cy="116"
+                rx="148"
+                ry="98"
+                fill="#177F5B"
+                stroke="#126947"
+                stroke-width="1"
+              />
+              <circle cx="63" cy="35" r="35" fill="#F4F4F4" />
+              <circle cx="241" cy="35" r="35" fill="#F4F4F4" />
+              <ellipse cx="63" cy="35" rx="27" ry="10" fill="#242424" />
+              <ellipse cx="240" cy="35" rx="27" ry="10" fill="#242424" />
+              <rect
+                x="59"
+                y="121"
+                width="197"
+                height="74"
+                rx="16"
+                fill="#09B27A"
+              />
+              <line
+                x1="87.5"
+                y1="121.5"
+                x2="227.5"
+                y2="121.5"
+                stroke="#202624"
+                stroke-width="9"
+                stroke-linecap="round"
+              />
+              <rect y="246" width="316" height="195" fill="#177F5B" />
+              <ellipse cx="157" cy="180" rx="98" ry="34" fill="#09B27A" />
+              <rect x="48" y="215" width="220" height="226" fill="#089867" />
+            </svg>
+          </div>
+          <h3>SVG</h3>
+        </div>
+      </div>
+    </div>
+    <button class="accordion">Dokumentasjon</button>
+    <div class="panel">
+      <h4>CSS-grid og Flexbox-layout</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </p>
+      <hr />
+      <h4>Canvas og SVG</h4>
+      <p>
+        Canvas: mange arcs, halve arcs etc satt sammen estetisk til frosk.
+        Animasjon: requestAnimationFrame (fordi ???) på loop (flue som flyr frem
+        og tilbake), onClick inspirert fra stackoverflow løsn (forklar). Pauser
+        animasjonen i 3 sekund. SVG: ellipser, sirkler satt sammen, gjerne litt
+        mindre detaljer enn i canvas, var lettere å få til i canvas (imo).
+        Animasjon: CSS keyframes (hvorfor? framfor JS og SMIL (se kilde)).
+        Animasjon frem og tilbake, onClick SVG element, pauser CSS keyframes
+        animasjon.
+      </p>
+      <hr />
+      <h4>jQuery</h4>
+      <p>
+        (https://stackoverflow.com/questions/54478511/why-jquery-doesnt-work-but-javascript-document-getelementbyid-works-fine/54478672)
+        document.getlemeentbyId returnerer DOM element, mens jQuery returnerer
+        collection av matched elements, så for å accesse må man bruke [0].
+        $(".accordion")[0].addEventListener("click", function () ^^^^ jQuery
+        objekt returneres --> kan gjøre nye kall etter hverandre i samme
+        kodelinje.
+      </p>
+      <hr />
+      <h4>Cross-browser testing</h4>
+      <p>
+        Fallback font, media query, ta opp litt om hvilke browsers som supporter
+        hva (safari, edge)
+      </p>
+      <hr />
+      <h4>Informasjonskilder</h4>
+      <p>
+        https://css-tricks.com/easing-animations-in-canvas/ animasjon i canvas
+        https://www.w3schools.com/jquery/jquery_selectors.asp jQuery
+        https://www.w3schools.com/tags/ref_canvas.asp canvas
+        https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+        canvas https://www.tutorialspoint.com/svg/index.htm svg
+        https://css-tricks.com/video-screencasts/135-three-ways-animate-svg/ svg
+        animasjon https://www.toptal.com/front-end/svg-animation-guide svg
+        animasjon
+      </p>
+      <hr />
+      <h4>Kilder</h4>
+      <p>
+        (https://stackoverflow.com/questions/30770501/detect-mouse-clicks-on-circles-on-html5-canvas)
+        for å få mus-posisjon onClick canvas.
+      </p>
+    </div>
 
-      ctx.beginPath();
-      ctx.arc(140, 414, 60, 1.2 * Math.PI, 1 * Math.PI, true);
-      ctx.lineTo(83, 650);
-      ctx.lineTo(317, 650);
-      ctx.strokeStyle = "#109963";
-      ctx.fillStyle = "#109963";
-      ctx.stroke();
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.arc(260, 414, 60, 1.8 * Math.PI, 2 * Math.PI);
-      ctx.lineTo(317, 650);
-      ctx.lineTo(83, 650);
-      ctx.lineTo(100, 350);
-      ctx.strokeStyle = "#109963";
-      ctx.fillStyle = "#109963";
-      ctx.stroke();
-      ctx.fill();
-
-      // Hode
-      ctx.beginPath();
-      ctx.arc(200, 390, 170, 1.2 * Math.PI, 1.8 * Math.PI);
-      ctx.arc(100, 320, 50, 0.7 * Math.PI, 1.3 * Math.PI);   
-      ctx.arc(200, 250, 170, 0.2 * Math.PI, 0.8 * Math.PI);
-      ctx.arc(300, 320, 50, 1.7 * Math.PI, 2.3 * Math.PI);
-      ctx.strokeStyle = "#126947";
-      ctx.fillStyle = "#1a8058";
-      ctx.stroke();
-      ctx.fill();
-
-      // Munn, hake
-      ctx.beginPath();
-      ctx.arc(200, 250, 170, 0.28 * Math.PI, 0.72 * Math.PI);
-      ctx.lineTo(92, 345);
-      ctx.arc(112, 345, 20, 1 * Math.PI, 1.4 * Math.PI);
-      ctx.lineTo(145, 330);
-      ctx.lineTo(210, 340);
-      ctx.lineTo(295, 325);
-      ctx.arc(289, 345, 20, 1.6 * Math.PI, 2 * Math.PI);
-      ctx.strokeStyle = "#13b375";
-      ctx.fillStyle = "#13b375";
-      ctx.stroke();
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.arc(125, 445, 120, 1.42 * Math.PI, 1.6 * Math.PI);
-      ctx.arc(195, 217, 120, 0.6 * Math.PI, 0.4  * Math.PI, true);
-      ctx.arc(270, 445, 120, 1.42 * Math.PI, 1.6 * Math.PI);
-      ctx.strokeStyle = "#202624";
-      ctx.fillStyle = "#13b375";
-      ctx.lineWidth = 7;
-      ctx.stroke();
-
-      // V. Øye
-      ctx.beginPath();
-      ctx.arc(110, 250, 35, 0, 2 * Math.PI);
-      ctx.strokeStyle = "#f4f4f4";
-      ctx.fillStyle = "#f4f4f4";
-      ctx.lineWidth = 1;
-      ctx.stroke();
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.arc(110, 279, 40, 1.25 * Math.PI, 1.75 * Math.PI);
-      ctx.arc(110, 222, 40, 0.25 * Math.PI, 0.75 * Math.PI);
-      ctx.strokeStyle = "#242424";
-      ctx.fillStyle = "#242424";
-      ctx.stroke();
-      ctx.fill();
-
-      // H. Øye
-      ctx.strokeStyle = "#f4f4f4";
-      ctx.fillStyle = "#f4f4f4";
-      ctx.beginPath();
-      ctx.arc(280, 250, 35, 0, 2 * Math.PI);
-      ctx.stroke();
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.arc(280, 279, 40, 1.25 * Math.PI, 1.75 * Math.PI);
-      ctx.arc(280, 222, 40, 0.25 * Math.PI, 0.75 * Math.PI);
-      ctx.strokeStyle = "#242424";
-      ctx.fillStyle = "#242424";
-      ctx.stroke();
-      ctx.fill();
-
-      
-    
-
-    
-
-
-
-    </script>
+    <script
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+      type="text/javascript"
+    ></script>
+    <script type="text/javascript" src="script.js"></script>
   </body>
 </html>

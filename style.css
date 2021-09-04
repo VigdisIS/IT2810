@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  height: 100%;
+  background-color: #2f4858;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+#about-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fefffc;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  padding: 50px 50px 100px 50px;
+}
+
+#pictures-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 80px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  padding-top: 70px;
+}
+
+#pictures {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#frog-canvas {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#canvas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#svgs {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: space-between;
+  height: 650px;
+  width: 400px;
+  background-color: #c2d5d9;
+  border: 1px solid black;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#svg-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#fly {
+  margin-left: -220px;
+  offset-path: path("M 10 10 L 300 10");
+  offset-distance: 0%;
+  animation: fly-path 2s linear alternate infinite;
+}
+
+@keyframes fly-path {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+.accordion {
+  background-color: #fefffc;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
+}
+
+.active,
+.accordion:hover {
+  background-color: #dcdcdc;
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: #fefffc;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 950px) {
+  #pictures {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  #canvas-container {
+    margin-bottom: 80px;
+  }
+}
