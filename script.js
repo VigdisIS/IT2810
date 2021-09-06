@@ -4,10 +4,10 @@ const flyClicked = () => {
 
   setTimeout(() => {
     $("#fly")[0].style.animationPlayState = "running";
-  }, 3000);
+  }, 1500);
 };
 
-// Accordion - dokumentasjon
+// Accordion for dokumentasjon
 $(".accordion")[0].addEventListener("click", function () {
   this.classList.toggle("active");
   const panel = this.nextElementSibling;
@@ -82,7 +82,7 @@ window.requestAnimationFrame(
         flying = false;
         setTimeout(() => {
           flying = true;
-        }, 3000);
+        }, 1000);
       }
     };
 

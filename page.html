@@ -5,7 +5,8 @@
   </head>
   <body>
     <div id="about-container">
-      <h1>Ben Dover</h1>
+      <h5>About the artist</h5>
+      <h1>Anura Salienta</h1>
       <p>
         An adult frog has a stout body, protruding eyes, anteriorly-attached
         tongue, limbs folded underneath, and no tail (the tail of tailed frogs
@@ -107,57 +108,98 @@
     <div class="panel">
       <h4>CSS-grid og Flexbox-layout</h4>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
+        Elementene på siden er plassert i forskjellige flexbox-hierarkier. "Om
+        kunstneren"-seksjonen på toppen av siden er en flexbox-container som
+        samler under-elementene på midten av containeren i én kolonne med
+        <code>flex-direction: column</code> og
+        <code>justify-content: center</code>. Containeren med begge bildene er
+        også en flexbox som sørger for at bildene havner på siden av hverandre
+        med luft både mellom og rundt. Hovedgrunnen til at flexbox er brukt
+        framfor CSS-grid er at flexbox er bedre egnet til nettsider med mindre
+        innhold, ettersom layoutet gir mer fleksibilitet når man arbeider med
+        rader og kolonner, i tillegg til at det også er enklere å manipulere
+        CSS-koden til containerene, som som oftest er fastsatt i grid. Hadde
+        denne nettsiden derimot hatt mye innhold og trengt et større oppsett,
+        ville gjerne grid sørget for at de mange elementene på siden ble
+        plassert på en ryddig og oversiktlig måte. En miks av både grid og
+        flexbox kunne også vært gunstig, ettersom det fort kan bli en del
+        flexbox-hierarkier når man arbeider med mange elementer.
       </p>
       <hr />
       <h4>Canvas og SVG</h4>
       <p>
-        Canvas: mange arcs, halve arcs etc satt sammen estetisk til frosk.
-        Animasjon: requestAnimationFrame (fordi ???) på loop (flue som flyr frem
-        og tilbake), onClick inspirert fra stackoverflow løsn (forklar). Pauser
-        animasjonen i 3 sekund. SVG: ellipser, sirkler satt sammen, gjerne litt
-        mindre detaljer enn i canvas, var lettere å få til i canvas (imo).
-        Animasjon: CSS keyframes (hvorfor? framfor JS og SMIL (se kilde)).
-        Animasjon frem og tilbake, onClick SVG element, pauser CSS keyframes
-        animasjon.
+        Frosken i canvas er lagd i høy grad ved å kombinere mindre og større
+        deler av sirkler og streker slik at canvas-tegningen gjerne har litt mer
+        detaljer, mens fluen består av ellipser og sirkler. Frosken i SVG er
+        lagd med fullstendige og blant annet overlappende
+        sirkler/ellipser/firkanter for å oppnå samme resultat. Fluen i SVG
+        består også bare av ellipser og sirkler, på lik linje som fluen i
+        canvas. Animasjonen i canvas er utført med
+        <code>requestAnimationFrame()</code>, som oppdaterer én animasjonsframe
+        og kjører i en loop. Fluen blir tegnet med en x verdi som øker dersom
+        fluen flyr til høyre, og minker om fluen flyr mot venstre. For hver
+        frame blir den forrige slettet, slik at det ser ut som fluen beveger seg
+        frem og tilbake. For å sjekke om brukeren trykker på fluen blir en
+        ellipse lik kroppen til fluen med samme x posisjon utringet med canvas
+        (getFly() funksjonen), og dersom brukeren klikker innenfor denne (x og y
+        koordinasjoner av musklikket) blir interaksjonen triggret, og fluen står
+        stille i 1 sekund. Animasjonen på SVG fluen er utført ved bruk av CSS
+        keyframes. SVG fluen har CSS som beskriver en horisontal path og
+        animation som beskriver at elementet skal følge denne linjen frem og
+        tilbake uendelig. Fluen har også en onClick som utløser en JavaScript
+        funksjon som pauser CSS animasjonen, for så å starte den igjen etter 1
+        sekund. Grunnen til at CSS keyframes er brukt til å animere SVG
+        tegningen er at animasjonen består av elementer som allerede kan
+        manipuleres gjennom CSS. Hadde animasjonen derimot trengt å manipulere
+        andre ting utenfor det CSS kan (for eksempel selve formen på fluen),
+        eller å synkronisere start / slutt på en animasjon, ville SMIL eller
+        JavaScript vært gunstigere.
       </p>
       <hr />
       <h4>jQuery</h4>
       <p>
-        (https://stackoverflow.com/questions/54478511/why-jquery-doesnt-work-but-javascript-document-getelementbyid-works-fine/54478672)
-        document.getlemeentbyId returnerer DOM element, mens jQuery returnerer
-        collection av matched elements, så for å accesse må man bruke [0].
-        $(".accordion")[0].addEventListener("click", function () ^^^^ jQuery
-        objekt returneres --> kan gjøre nye kall etter hverandre i samme
-        kodelinje.
+        jQuery er først og fremst brukt for å erstatte
+        <code>document.getElementById</code>.
+        <code>document.getElementById()</code>
+        returnerer et DOM-objekt som har den gitte id-en, mens jQuery returnerer
+        en samling av elementer som matcher id-en. jQuery er også brukt for å
+        erstatte lengre kodeblokker ved å legge et addEventListener kall på
+        samme linje som jQuery-en som henter elementet:
+        <code>
+          $(".accordion")[0].addEventListener("click", function (){...})</code
+        >
       </p>
       <hr />
       <h4>Cross-browser testing</h4>
       <p>
-        Fallback font, media query, ta opp litt om hvilke browsers som supporter
-        hva (safari, edge)
+        Siden har blitt kjørt i Chrome, Edge og Firefox hvor aspekter som
+        animasjon og animasjonshastighet, interaksjon og responsivitet ble
+        testet. Både animasjon og interaksjon fungerte som det skulle på alle
+        nettleserne. For å sikre dette er -webkit-, -moz- og -o-animation (i
+        tillegg til keyframes) lagt til for å sikre at animasjonen fungerer på
+        Safari, Opera og Firefox. Fallback fonter som Helvetica og sans-serif
+        ble lagt til for å sikre kompatibilitet også på litt mer utdaterte
+        nettlesere som ikke har like mye støtte. For å sikre responsivitet ble
+        det lagt til en media query i CSS, hvor bildene heller kommer etter
+        hverandre i en kolonne framfor ved siden av hverandre når skjermen blir
+        for liten. Ellers sørger flexbox for naturlig flyt når vinduet endrer
+        størrelse.
       </p>
       <hr />
       <h4>Informasjonskilder</h4>
       <p>
-        https://css-tricks.com/easing-animations-in-canvas/ animasjon i canvas
-        https://www.w3schools.com/jquery/jquery_selectors.asp jQuery
-        https://www.w3schools.com/tags/ref_canvas.asp canvas
-        https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
-        canvas https://www.tutorialspoint.com/svg/index.htm svg
-        https://css-tricks.com/video-screencasts/135-three-ways-animate-svg/ svg
-        animasjon https://www.toptal.com/front-end/svg-animation-guide svg
-        animasjon
+        <ul>
+          <li><a href="https://css-tricks.com/easing-animations-in-canvas/">https://css-tricks.com/easing-animations-in-canvas/</a></li>
+          <li><a href="https://www.w3schools.com/jquery/jquery_selectors.asp">https://www.w3schools.com/jquery/jquery_selectors.asp</a></li>
+          <li><a href=" https://www.w3schools.com/tags/ref_canvas.asp"> https://www.w3schools.com/tags/ref_canvas.asp</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D</a></li>
+          <li><a href="https://www.tutorialspoint.com/svg/index.htm">https://www.tutorialspoint.com/svg/index.htm</a></li>
+          <li><a href="https://css-tricks.com/video-screencasts/135-three-ways-animate-svg/">https://css-tricks.com/video-screencasts/135-three-ways-animate-svg/</a></li>
+          <li><a href="https://www.toptal.com/front-end/svg-animation-guide">https://www.toptal.com/front-end/svg-animation-guide</a></li>
+        </ul>
+        
       </p>
-      <hr />
-      <h4>Kilder</h4>
-      <p>
-        (https://stackoverflow.com/questions/30770501/detect-mouse-clicks-on-circles-on-html5-canvas)
-        for å få mus-posisjon onClick canvas.
-      </p>
+     
     </div>
 
     <script

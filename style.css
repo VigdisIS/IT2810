@@ -5,6 +5,10 @@ body {
   font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
+h5 {
+  text-align: center;
+}
+
 h1 {
   text-align: center;
 }
@@ -67,7 +71,37 @@ h1 {
   margin-left: -220px;
   offset-path: path("M 10 10 L 300 10");
   offset-distance: 0%;
+  -webkit-animation: fly-path 2s linear alternate infinite;
+  -moz-animation: fly-path 2s linear alternate infinite;
+  -o-animation: fly-path 2s linear alternate infinite;
   animation: fly-path 2s linear alternate infinite;
+}
+
+@-webkit-keyframes fly-path {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+@-moz-keyframes fly-path {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+@-o-keyframes fly-path {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
 }
 
 @keyframes fly-path {
